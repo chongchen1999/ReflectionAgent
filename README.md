@@ -7,7 +7,6 @@ This repository contains an implementation of the Reflection Pattern, which util
 - [Setup Guide](#setup-guide)
 - [Usage Examples](#usage-examples)
 - [Implementation Guide](#implementation-guide)
-- [License](#license)
 
 ---
 
@@ -33,7 +32,7 @@ This repository contains an implementation of the Reflection Pattern, which util
    - Obtain an API key from Groq (or a compatible model provider).
    - Add your API key to your environment:
      ```bash
-     export GROQ_API_KEY='your_api_key_here'
+     GROQ_API_KEY="Your Groq api key here"
      ```
 
 ## Usage Examples
@@ -90,3 +89,6 @@ The Reflection Agent is organized into modular files for maintainability and cla
 
 - **Error Handling**:
   - Chat history is managed to prevent memory overflow, and verbose output provides status updates for easier debugging.
+
+## Video Demo
+    - *https://youtu.be/z10-5yZ4b2g*
