@@ -1,43 +1,26 @@
+import unittest
 import os
-from pprint import pprint
+import sys
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../src')))
+from generate import generate_response
 from groq import Groq
-from dotenv import load_dotenv
-from IPython.display import display_markdown
 
-# Remember to load the environment variables. You should have the Groq API Key in there :)
+from dotenv import load_dotenv
 load_dotenv()
 
-client = Groq(
-    api_key=os.getenv("GROQ_API_KEY"),
-)
+class TestGeneration(unittest.TestCase):
+    def test_generation(self):
+        # Mock client and history to test generate_response
+        client = Groq(api_key=os.getenv("GROQ_API_KEY"))
+        model = "llama-3.1-70b-versatile"
+        generation_history = [{"role": "user", "content": "Test message"}]
 
-generation_chat_history = [
-    {
-        "role": "system",
-        "content": "You are a skilled programmer tasked with generating high quality programming code."
-        "Your task is to Generate the best content possible for the user's request. If the user provides critique," 
-        "respond with a revised version of your previous attempt."
-    }
-]
+        # Call function
+        response = generate_response(client, model, generation_history)
 
-generation_chat_history.append(
-    {
-        "role": "user",
-        "content": "Generate a C++ implementation of the Quick Sort algorithm"
-    }
-)
+        # Assertions
+        self.assertIsNotNone(response, "Generation response should not be None")
+        self.assertIsInstance(response, str, "Generation response should be a string")
 
-mergesort_code = client.chat.completions.create(
-    messages=generation_chat_history,
-    model="llama3-70b-8192"
-).choices[0].message.content
-
-generation_chat_history.append(
-    {
-        "role": "assistant",
-        "content": mergesort_code
-    }
-)
-
-print(mergesort_code)
-# display_markdown(mergesort_code, raw=True)
+if __name__ == '__main__':
+    unittest.main()

@@ -1,4 +1,5 @@
 # generate.py
+
 from colorama import Fore
 from utils import completions_create
 

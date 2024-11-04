@@ -1,5 +1,6 @@
-import time
+# utils.py
 
+import time
 from colorama import Fore
 from colorama import Style
 
