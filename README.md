@@ -1,4 +1,3 @@
-```markdown
 # Reflection Agent
 
 This repository contains an implementation of the Reflection Pattern, which utilizes a language model (e.g., `llama-3.1-70b-versatile`) for iterative content generation and refinement. By using structured prompts, iterative feedback, and configurable parameters, the Reflection Agent can generate high-quality responses across various applications like code generation, language translation, and summarization.
@@ -22,8 +21,7 @@ This repository contains an implementation of the Reflection Pattern, which util
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-username/reflection-agent.git
-   cd reflection-agent
+   git clone git@github.com:chongchen1999/ReflectionAgent.git
    ```
 
 2. Install the dependencies:
@@ -92,4 +90,3 @@ The Reflection Agent is organized into modular files for maintainability and cla
 
 - **Error Handling**:
   - Chat history is managed to prevent memory overflow, and verbose output provides status updates for easier debugging.
-```
