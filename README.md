@@ -91,4 +91,4 @@ The Reflection Agent is organized into modular files for maintainability and cla
   - Chat history is managed to prevent memory overflow, and verbose output provides status updates for easier debugging.
 
 ## Video Demo
-    - https://www.youtube.com/watch?v=e4sjeOyQ6C0
+    https://www.youtube.com/watch?v=e4sjeOyQ6C0
