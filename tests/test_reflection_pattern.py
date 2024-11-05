@@ -14,12 +14,14 @@ class TestReflectionAgent(unittest.TestCase):
     def setUp(self):
         self.agent = ReflectionAgent(model="llama-3.1-70b-versatile")
 
+    #  Basic Functionality
     def test_successful_reflection_loop(self):
         user_msg = "Can you write a short story about a cat?"
         result = self.agent.run(user_msg, verbose=0)
         self.assertIsInstance(result, str)
         self.assertTrue(len(result) > 0)
 
+    # Stop Sequence Detection
     def test_stop_sequence_in_reflection(self):
         user_msg = "Can you write a short story about a dog?"
         with patch('builtins.print') as mock_print:
@@ -28,17 +30,20 @@ class TestReflectionAgent(unittest.TestCase):
         self.assertIsInstance(result, str)
         self.assertTrue(len(result) > 0)
 
+    # empty message
     def test_empty_user_message(self):
         user_msg = ""
         with self.assertRaises(ValueError):
             self.agent.run(user_msg, verbose=0)
 
+    # long message
     def test_long_user_message(self):
         user_msg = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus eu risus ac odio bibendum malesuada. Nulla facilisi. Sed quis eros sed magna commodo varius. Fusce vel mauris et eros rhoncus faucibus. Nullam posuere, massa vel efficitur faucibus, mi mi commodo dui, vel ultricies magna mi vel mauris. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Morbi vel commodo urna. Nullam vel magna eget mi pretium fermentum. Proin faucibus, eros vel efficitur lobortis, mi mi commodo dui, vel ultricies magna mi vel mauris."
         result = self.agent.run(user_msg, verbose=0)
         self.assertIsInstance(result, str)
         self.assertTrue(len(result) > 0)
 
+    # Verbosity Levels
     def test_high_verbosity(self):
         user_msg = "Can you write a short story about a bird?"
         with patch('builtins.print') as mock_print:
@@ -47,6 +52,7 @@ class TestReflectionAgent(unittest.TestCase):
         self.assertIsInstance(result, str)
         self.assertTrue(len(result) > 0)
 
+    # Custom Prompts
     def test_custom_system_prompts(self):
         user_msg = "Can you write a short poem about the moon?"
         custom_generation_prompt = "Write the most beautiful and poetic description of the moon you can."
@@ -60,12 +66,14 @@ class TestReflectionAgent(unittest.TestCase):
         self.assertIsInstance(result, str)
         self.assertTrue(len(result) > 0)
 
+    # high step count
     def test_high_step_count(self):
         user_msg = "Can you write a short story about a unicorn?"
         result = self.agent.run(user_msg, n_steps=10, verbose=0)
         self.assertIsInstance(result, str)
         self.assertTrue(len(result) > 0)
 
+    # low step count
     def test_low_step_count(self):
         user_msg = "Can you write a short story about a dragon?"
         result = self.agent.run(user_msg, n_steps=2, verbose=0)
